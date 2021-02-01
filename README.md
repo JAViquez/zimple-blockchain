@@ -1,15 +1,18 @@
 # Descripción
 *Zimple Blockchain* es un proyecto que nos ayudará a comprender lo que es un blockchain.
 
+Requerimientos
+1. Tener Docker instalado
+
 Stack
+- Docker
 - Nodejs + Typescript
 - Express.js
 - React.js
 
 ## Commandos backend
 
-1. `npm install` para instalar las dependencias
-2. `npm run start` para inicializar el servidor
+1. `docker-compose up --build` para correr construr y lanzar el backend.
 
 ## Ejercicio #1 Backend
 
@@ -31,6 +34,8 @@ agregar y obtener bloques.
     - Requerimiento: **El hash debe comenzar con 2 ceros Ejemplo: '00......'**
     - Se debe utilizar SHA256. https://nodejs.org/en/knowledge/cryptography/how-to-use-crypto-module/.
 
+4. Crear un nuevo db adapter para añadir persistencia.
+    - Se debe crear una clase llamada MariaDbAdapter.ts que implemente ports/DbPort.ts y que se conecte con la instancia de mariadb configurada en el docker-compose.yml.
 
 ## Ejercicio #2 Frontend
 1. Crear una aplicación en React que permita visualizar y agregar los bloques.
