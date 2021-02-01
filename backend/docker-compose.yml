@@ -1,10 +1,37 @@
 version: "3.7"
 
+networks:
+  # Server network to hold database and backend
+  servernetwork: {}
+# Create named volumes to mount to containers.
+volumes:
+  # Create a named volume to hold database data
+  database-storage: {}
+
 services:
+  
   zimple-blockchain:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: zimple-blockchain
+    depends_on:
+      - "database"
     ports:
       - 7001:8080
+
+  database:
+    build: ./database
+    volumes:
+      - database-storage:/var/lib/mysql
+    environment:
+      # Since we didn't set any password, default root password is empty.
+      # Make sure Mariadb accepts the empty password and runs.
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    ports:
+      # Expose the Mysql port for local development.
+      # This is so we can connect to the database using `localhost` or the ip of the docker host.
+      - "3306:3306"
+    networks:
+      # Add the database service to the servernetwork.
+      - servernetwork
