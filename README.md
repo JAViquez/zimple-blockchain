@@ -6,6 +6,11 @@ Stack
 - Express.js
 - React.js
 
+## Commandos backend
+
+1. `npm install` para instalar las dependencias
+2. `npm run start` para inicializar el servidor
+
 ## Ejercicio #1 Backend
 1. Ver el video https://www.youtube.com/watch?v=_160oMzblY8&t=2s hasta el minuto 9:15 (Blockchain) para entender conceptos como: Block, Mining y Blockchain.
 
@@ -28,4 +33,5 @@ Stack
     - Se debe de utilizar *React Hooks*.
     - Se debe utilizar *fetch* para comunicarse con el backend.
     - Se debe utilizar *CSS grids* para construir los bloques.
+    - La aplicación debe ser responsive.
     
