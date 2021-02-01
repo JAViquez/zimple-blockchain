@@ -22,8 +22,7 @@ entorno **blockchain**  y por otro lado utilizar Node.js + Typescript para imple
 
 ## Ejercicio #1: Proyecto Backend
 
-El objetivo de este ejecicio es construir un API utilizando **Express.js** que nos permita
-agregar, obtener y verificar bloques.
+El objetivo de este ejercicio es construir un API utilizando **Express.js** que nos permita agregar, obtener y verificar bloques.
 
 Por otro lado, utilizaremos **mariadb** para persistir el blockchain.
 
@@ -31,14 +30,14 @@ Por otro lado, utilizaremos **mariadb** para persistir el blockchain.
 
 2. Hacer un fork de este proyecto.
 
-3. Implementar el metodo **mine**
+3. Implementar el método **mine** encontrado en el archivo **services/addBlock.ts**.
     - El hash del bloque se debe componer de un string con la siguiente estructura: `const hash = SHA256(id + data + previousHash + nonce)`.
     - Como se explica en el video, se debe ir iterando (incrementando el 'nonce') hasta encontrar un hash que cumpla con el requerimiento especificado.
     - Requerimiento: **El hash debe comenzar con 2 ceros Ejemplo: '00......'**
     - Se debe utilizar SHA256. https://nodejs.org/en/knowledge/cryptography/how-to-use-crypto-module/.
     - Crear un git commit que contenga la solución de este paso.
 
-4. Implementar el servicio *addBlock* encontrado en el archivo *services/addBlock.ts*.
+4. Implementar el servicio **addBlock** encontrado en el archivo *services/addBlock.ts*.
     - Se debe de construir el bloque segun la interface *Block.ts* encontrada en *models/Block.ts*.
     - Se debe hacer un llamado al método "mine" para obtener el hash del bloque.
     - El blockId debe ser un autogenerado utilizando la libreria "cuid". Ejemplo: `const blockId = cuid()`.
@@ -74,11 +73,11 @@ Por otro lado, utilizaremos **mariadb** para persistir el blockchain.
 8. Crear un **Pull Request** en Github con la solución del proyecto backend.
 
 ## Ejercicio #2: Proyecto Frontend
-1. Crear una aplicación en React que permita visualizar, agregar los bloques y verificar la validez del blockchain.
-    - Se deben visualizar los bloques ordenandamente, del más antiguo al mas nuevo.
+1. Crear una aplicación en React que permita visualizar, agregary verificar la validez de los bloques.
+    - Se deben visualizar los bloques ordenandamente, del más nuevo al más antiguo.
     - Debe ser posible agregar nuevos bloques.
     - Debe ser posible visualizar el estado del blockchain.
-    - El diseño del app a criterio del desarrollador.
+    - El diseño del app es a criterio del desarrollador.
     - Se debe de utilizar *React Hooks*.
     - Se debe utilizar *fetch* para comunicarse con el backend.
     - Se debe utilizar *CSS grids* para construir los bloques.
