@@ -9,16 +9,6 @@ volumes:
   database-storage: {}
 
 services:
-  
-  zimple-blockchain:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: zimple-blockchain
-    depends_on:
-      - "database"
-    ports:
-      - 7001:8080
 
   database:
     build: ./database
@@ -35,3 +25,15 @@ services:
     networks:
       # Add the database service to the servernetwork.
       - servernetwork
+  
+  zimple-blockchain:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zimple-blockchain
+    networks:
+      - servernetwork
+    ports:
+      - 7001:8080
+    depends_on:
+      - database

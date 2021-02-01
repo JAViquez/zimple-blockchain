@@ -3,7 +3,7 @@ import { Block } from '../domain/Block';
 export interface DbPort {
     saveBlock: (params: {
         block: Block
-    }) => Promise<{ blockId: string }>
+    }) => Promise<Block>
 
     getLastBlock: () => Promise<Block | null>
 

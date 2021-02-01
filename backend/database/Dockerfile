@@ -7,3 +7,4 @@ ADD ./backup /docker-entrypoint-initdb.d
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["mysqld"]
+EXPOSE 3606

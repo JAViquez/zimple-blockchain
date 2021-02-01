@@ -12,7 +12,10 @@ Stack
 
 ## Commandos backend
 
-1. `docker-compose up --build` para correr construr y lanzar el backend.
+1. `docker-compose up --build -d` compila y inicia el proyecto.
+2. `docker-compose down` detiene el proyecto.
+3. `docker-compose down -v` detiene el proyecto y limpia la base de datos.
+
 
 ## Ejercicio #1 Backend
 
@@ -36,6 +39,15 @@ agregar y obtener bloques.
 
 4. Crear un nuevo db adapter para añadir persistencia.
     - Se debe crear una clase llamada MariaDbAdapter.ts que implemente ports/DbPort.ts y que se conecte con la instancia de mariadb configurada en el docker-compose.yml.
+    - Los tados de conexion son los siguientes: 
+    ```typescript
+        const pool = mariadb.createPool({
+            host: "database", 
+            user: "root", 
+            password: "",
+            database: "blockchaindb"
+        });
+    ```
 
 ## Ejercicio #2 Frontend
 1. Crear una aplicación en React que permita visualizar y agregar los bloques.

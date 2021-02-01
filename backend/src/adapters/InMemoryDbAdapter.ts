@@ -9,19 +9,19 @@ import { DbPort } from '../ports/DbPort';
 const blockchain : Block[] = [];
 
 export class InMemoryDbAdapter implements DbPort {
-    saveBlock(params: {
+    async saveBlock(params: {
         block: Block
     }) {
         blockchain.push(params.block);
-        return Promise.resolve({ blockId: params.block.blockId });
+        return Promise.resolve(params.block);
     }
 
-    getLastBlock(){
+    async getLastBlock(): Promise<Block | null>{
         const lastBlock = blockchain.length > 0 ? blockchain[blockchain.length - 1] : null;
         return Promise.resolve(lastBlock);
     }
 
-    getBlockchain(){
+    async getBlockchain(): Promise<Block[]>{
         return Promise.resolve(blockchain);
     }
 }
