@@ -11,7 +11,7 @@ const port = 8080;
 // parse application/json
 app.use(bodyParser.json())
 
-const dbAdapter = new InMemoryDbAdapter()
+const db = new InMemoryDbAdapter()
 
 app.post('/blocks', async (req, res) => {
     try {
@@ -20,8 +20,9 @@ app.post('/blocks', async (req, res) => {
             res.status(400).json({
                 "errorMessage": "missing data argument"
             });
+            return;
         }
-        const result = await addBlock(data, dbAdapter);
+        const result = await addBlock(data, db);
         res.status(200).json(result);
 
     } catch(err){
@@ -33,7 +34,7 @@ app.post('/blocks', async (req, res) => {
 
 app.get('/blockchain', async (req, res) => {
     try {
-        const blockchain = await getBlockchain(dbAdapter);
+        const blockchain = await getBlockchain(db);
         res.json(blockchain);
     } catch (err) {
         res.status(500).json({

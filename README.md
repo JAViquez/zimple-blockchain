@@ -12,6 +12,10 @@ Stack
 2. `npm run start` para inicializar el servidor
 
 ## Ejercicio #1 Backend
+
+El objetivo de este ejecicio es construir un API que nos permita
+agregar y obtener bloques.
+
 1. Ver el video https://www.youtube.com/watch?v=_160oMzblY8&t=2s hasta el minuto 9:15 (Blockchain) para entender conceptos como: Block, Mining y Blockchain.
 
 
@@ -22,10 +26,11 @@ Stack
     - Se debe guardar el bloque utilizando el adapter brindado.
 
 3. Implementar el metodo "mine"
-    - Como se explica en el video, se debe incrementar el un número llamado 'nonce' hasta encontrar un hash que cumpla con el requerimiento especificado.
-    - El hash debe cumplir con el siguiente requerimiento:  Debe comenzar con 3 ceros. Ejemplo: '000......'
-    - El hash del bloque se debe componer de (id + data + previousHash + nonce).
+    - El hash del bloque se debe componer de un string con la siguiente estructura: `const hash = SHA256(id + data + previousHash + nonce)`.
+    - Como se explica en el video, se debe ir iterando (incrementando el 'nonce') hasta encontrar un hash que cumpla con el requerimiento especificado.
+    - Requerimiento: **El hash debe comenzar con 2 ceros Ejemplo: '00......'**
     - Se debe utilizar SHA256. https://nodejs.org/en/knowledge/cryptography/how-to-use-crypto-module/.
+
 
 ## Ejercicio #2 Frontend
 1. Crear una aplicación en React que permita visualizar y agregar los bloques.

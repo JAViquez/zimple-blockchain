@@ -1,6 +1,6 @@
-import { Block } from '../models/Block';
+import { Block } from '../domain/Block';
 
-export interface DbAdapter {
+export interface DbPort {
     saveBlock: (params: {
         block: Block
     }) => Promise<{ blockId: string }>

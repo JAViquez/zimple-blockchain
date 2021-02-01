@@ -1,7 +1,7 @@
-import { DbAdapter } from '../adapters/DbAdapter';
-import { Block } from '../models/Block';
+import { DbPort } from '../ports/DbPort';
+import { Block } from '../domain/Block';
 
-export async function addBlock(data: any, dbAdapter: DbAdapter) : Promise<Block>{
+export async function addBlock(data: any, db: DbPort) : Promise<Block>{
   throw new Error('Missing Implementation')
 }
 

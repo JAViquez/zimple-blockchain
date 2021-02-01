@@ -1,14 +1,14 @@
 /** 
  * This class is the "in memory" implementation 
- * of the DbAdapter interface
+ * of the DbService interface
 */
 
-import { Block } from '../models/Block'
-import { DbAdapter} from './DbAdapter';
+import { Block } from '../domain/Block'
+import { DbPort } from '../ports/DbPort';
 
 const blockchain : Block[] = [];
 
-export class InMemoryDbAdapter implements DbAdapter {
+export class InMemoryDbAdapter implements DbPort {
     saveBlock(params: {
         block: Block
     }) {

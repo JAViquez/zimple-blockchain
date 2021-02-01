@@ -1,6 +1,6 @@
-import { DbAdapter } from '../adapters/DbAdapter';
-import { Block } from '../models/Block';
+import { DbPort } from '../ports/DbPort';
+import { Block } from '../domain/Block';
 
-export async function getBlockchain( dbAdapter: DbAdapter) : Promise<Block[]>{
-  return dbAdapter.getBlockchain();
+export async function getBlockchain( db: DbPort) : Promise<Block[]>{
+  return db.getBlockchain();
 }
