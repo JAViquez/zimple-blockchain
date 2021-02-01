@@ -12,7 +12,7 @@ entorno **blockchain**  y por otro lado utilizar Node.js + Typescript para imple
 - Mariadb
 - React.js
 
-## Commandos backend
+## Comandos backend
 
 1. `docker-compose up --build -d` compila e inicia el proyecto.
 2. `docker-compose down` detiene el proyecto.
