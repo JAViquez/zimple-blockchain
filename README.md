@@ -38,8 +38,9 @@ agregar y obtener bloques.
     - Se debe utilizar SHA256. https://nodejs.org/en/knowledge/cryptography/how-to-use-crypto-module/.
 
 4. Crear un nuevo db adapter para añadir persistencia.
-    - Se debe crear una clase llamada MariaDbAdapter.ts que implemente ports/DbPort.ts y que se conecte con la instancia de mariadb configurada en el docker-compose.yml.
-    - Los tados de conexion son los siguientes: 
+    - Se debe crear una clase llamada MariaDbAdapter.ts en la carpeta "adapters" y debe implementar ports/DbPort.ts
+    - Se debe conectar a mariadb para guardar y obtener los bloques.
+    - Los datos de conexion son los siguientes: 
     ```typescript
         const pool = mariadb.createPool({
             host: "database", 
