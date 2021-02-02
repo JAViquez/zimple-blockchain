@@ -87,7 +87,7 @@ Por otro lado, utilizaremos **mariadb** para persistir el blockchain.
 
 2. Crear un **Pull Request** en Github con la solución del proyecto frontend.
 
-## Ejerciio #3 UTXO (proximamente)
+## Ejercicio #3 UTXO (proximamente)
     
 ## Referencias 
 https://blog.baudson.de/blog/stop-and-remove-all-docker-containers-and-images
