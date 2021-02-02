@@ -1,10 +1,7 @@
 import { DbPort } from '../ports/DbPort';
 import { Block } from '../domain/Block';
 import { getCrypto, createHash } from './encription'
-
-export async function addBlock(data: any, db: DbPort) : Promise<Block>{
-  throw new Error('Missing Implementation')
-}
+import cuid from 'cuid'
 
 function reachMineRequirements(hash: string): boolean {
   return (hash[0] == "0" && hash[1] == "0") ? true : false
@@ -34,4 +31,20 @@ function mine(
       hash: hash,
       nonce: nonce
     })
+}
+
+export async function addBlock(data: any, db: DbPort) : Promise<Block>{
+  const blockId: string = cuid()
+  const prevBlock = await db.getLastBlock()
+  const prevHash = prevBlock ? prevBlock.hash : '0'.repeat(64)
+  const miningResult = await mine(blockId, data, prevHash)
+  const newBlock: Block = {
+    blockId, 
+    data,
+    prevHash,
+    hash: miningResult.hash,
+    nonce: miningResult.nonce
+  }
+  db.saveBlock({block: newBlock})
+  return Promise.resolve(newBlock)
 }
