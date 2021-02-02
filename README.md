@@ -1,5 +1,5 @@
 # Descripción
-*Zimple Blockchain* es un proyecto que nos ayudará a comprender conceptos como Bloks, Mining, Hashing  en un 
+*Zimple Blockchain* es un proyecto que nos ayudará a comprender conceptos como Blocks, Mining, Hashing  en un 
 entorno **blockchain**  y por otro lado utilizar Node.js + Typescript para implementar un blockchain de una manera sencilla.
 
 ## Requerimientos
