@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { addBlock } from './services/addBlock';
 import { getBlockchain } from './services/getBlockchain';
-import { InMemoryDbAdapter } from './adapters/InMemoryDbAdapter';
+import { MariaDbAdapter } from './adapters/MariaDbAdapter';
 
 const app = express();
 const port = 8080;
@@ -11,7 +11,7 @@ const port = 8080;
 // parse application/json
 app.use(bodyParser.json())
 
-const db = new InMemoryDbAdapter()
+const db = new MariaDbAdapter()
 
 app.post('/blocks', async (req, res) => {
     try {
