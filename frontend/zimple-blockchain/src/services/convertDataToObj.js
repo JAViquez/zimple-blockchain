@@ -1,0 +1,1 @@
+export const convertDataToObj = payload => ({ data: payload })
