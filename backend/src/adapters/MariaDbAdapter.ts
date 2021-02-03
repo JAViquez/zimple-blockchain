@@ -8,32 +8,21 @@ import { DbPort } from '../ports/DbPort';
 
 const mariadb = require('mariadb');
 
-function getPool() {
-    return mariadb.createPool({
-        host: "database", 
-        user: "root", 
-        password: "",
-        database: "blockchaindb"
-    });
-}
+const pool = mariadb.createPool({
+    host: "database", 
+    user: "root", 
+    password: "",
+    database: "blockchaindb"
+});
 
 export class MariaDbAdapter implements DbPort {
     async saveBlock(params: {
         block: Block
     }): Promise<Block> {
-        const pool = getPool()
-        pool.getConnection()
-            .then((conn: any) => {
-                conn.query("insert into blockchaindb.blocks(blockId, nonce, data, prevHash, hash) values(?, ?, ?, ?, ?)", 
-                    [params.block.blockId, params.block.nonce, params.block.data, params.block.prevHash, params.block.hash])
-                    .then((rows: any) => {
-                    })
-                    .then((res: any) => {
-                    })
-                    .catch((err: any) => {
-                        console.log(err)
-                    })
-            })
+        const conn = await pool.getConnection()
+        await conn.query("insert into blockchaindb.blocks(blockId, nonce, data, prevHash, hash) values(?, ?, ?, ?, ?)", 
+            [params.block.blockId, params.block.nonce, params.block.data, params.block.prevHash, params.block.hash])
+        conn.close()
         return Promise.resolve(params.block)
     }
 
@@ -45,17 +34,10 @@ export class MariaDbAdapter implements DbPort {
     
     async getBlockchain(): Promise<Block[]>{
         let blockchain: Block[] = []
-        const pool = getPool()
-        pool.getConnection()
-            .then((conn: any) => {
-                conn.query("select * from blockchaindb.blocks")
-                .then((rows: any) => {
-                    blockchain = rows.slice(0, rows.length)
-                })
-                .catch((err: any) => {
-                    console.log(err)
-                })
-            })
+        const conn = await pool.getConnection()
+        const rows = await conn.query("select * from blockchaindb.blocks")
+        blockchain = rows.slice(0, rows.length)
+        conn.close()
         return Promise.resolve(blockchain)
     }
 }
