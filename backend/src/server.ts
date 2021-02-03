@@ -11,6 +11,15 @@ const port = 8080;
 // parse application/json
 app.use(bodyParser.json())
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+})
+
 const db = new MariaDbAdapter()
 
 app.post('/blocks', async (req, res) => {

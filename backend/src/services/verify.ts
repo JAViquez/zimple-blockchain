@@ -5,7 +5,7 @@ import { generateHash, getCrypto } from '../services/encription'
 function verifyHash(block: Block): boolean {
   const crypto = getCrypto();
   const hash = generateHash(block.blockId, block.data, block.prevHash, block.nonce, crypto)
-  if(hash != block.hash) {
+  if(hash.startsWith(block.hash)) {
     return false
   }
   return true

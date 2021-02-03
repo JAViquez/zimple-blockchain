@@ -4,7 +4,7 @@ import { getCrypto, generateHash } from './encription'
 import cuid from 'cuid'
 
 function reachMineRequirements(hash: string): boolean {
-  return (hash[0] == "0" && hash[1] == "0") ? true : false
+  return hash.startsWith("00") ? true : false
 }
 
 function mine( 
@@ -15,7 +15,6 @@ function mine(
     let hash: string = ""
     let crypto = getCrypto();
     if(crypto) {
-      let string: string = ""
       let continueMining: boolean = true
   
       do {
