@@ -67,7 +67,9 @@ Por otro lado, utilizaremos **mariadb** para persistir el blockchain.
     - Crear un git commit que contenga la solución de este paso.
 
 7. Describir en este espacio una posible manera de corromper el blockchain.
-   - Explicación:
+   - Explicación: 
+    Una posible manera de corromper el blockchain es por medio de inyección de código SQL en el campo de texto para el *data* de cada uno de los bloques. Al hacer esto se podrían introducir sentencias de comandos SQL por medio de los cuales se puedan hacer borrados de bloques, insertar bloques sin las respectivas validaciones o hacer cambios de los datos de los bloques de manera que se invaliden los hashes del blockchain.
+
    - Crear un git commit que contenga la solución de este paso.
 
 8. Crear un **Pull Request** en Github con la solución del proyecto backend.
