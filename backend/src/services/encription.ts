@@ -7,7 +7,8 @@ export function getCrypto(): any | null {
     }
 }
 
-export function createHash(string: string, crypto: any) : string {
+export function generateHash(blockId: string, data: any, prevHash: string, nonce: number, crypto: any) : string {
+    const string = `${blockId}${data}${prevHash}${nonce}`
     return crypto.createHash("sha256")
                     .update(string)
                     .digest("hex")

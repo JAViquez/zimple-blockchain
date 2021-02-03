@@ -1,6 +1,6 @@
 import { DbPort } from '../ports/DbPort';
 import { Block } from '../domain/Block';
-import { getCrypto, createHash } from './encription'
+import { getCrypto, generateHash } from './encription'
 import cuid from 'cuid'
 
 function reachMineRequirements(hash: string): boolean {
@@ -19,8 +19,7 @@ function mine(
       let continueMining: boolean = true
   
       do {
-        string = `${blockId}${data}${prevHash}${nonce}`
-        hash = createHash(string, crypto)
+        hash = generateHash(blockId, data, prevHash, nonce, crypto)
         continueMining = !reachMineRequirements(hash)
         if(continueMining) {
           nonce += 1;  
