@@ -3,16 +3,17 @@ import { convertDataToObj } from '../services/convertDataToObj'
 export const SET_LOADIND_BLOCKCHIAN_STATE = "setLoadingBlockchain"
 export const ADD_BLOCK_TO_BLOCKCHAIN = "addBlockToBlockChain"
 export const SET_READY_BLOCKCHAIN_STATE = "setReadyBlockchain"
+export const FILL_BLOCKCHAIN = "fillBlockchain"
 
-export const setLoadingBlockchainState = data => ({type: SET_LOADIND_BLOCKCHIAN_STATE, payload: data})
+export const setLoadingBlockchainState = () => ({type: SET_LOADIND_BLOCKCHIAN_STATE, payload: null})
 export const addBlockToBlockchain = block => ({type: ADD_BLOCK_TO_BLOCKCHAIN, payload: block})
-export const setReadyBlockchain = block => ({type: SET_READY_BLOCKCHAIN_STATE, payload: block})
+export const setReadyBlockchain = () => ({type: SET_READY_BLOCKCHAIN_STATE, payload: null})
+export const fillBlockchain = blockchain => ({type: FILL_BLOCKCHAIN, payload: blockchain})
 
 export const addNewBlockData = payload => {
     return dispatch => {
         dispatch(setLoadingBlockchainState(payload))
         const obj = convertDataToObj(payload)
-        console.log("payload ", obj)
         const url = "http://localhost:7001/blocks"
         fetch(url, {
             method: 'POST',
@@ -27,5 +28,21 @@ export const addNewBlockData = payload => {
             dispatch(setReadyBlockchain(block))
         })
         .catch((e) => console.log("error while updating database, error was ", e))
+    }
+}
+
+export const getBlockchainFromDB = () => {
+    return dispatch => {
+        dispatch(setLoadingBlockchainState())
+        const url = "http://localhost:7001/blockchain"
+        fetch(url, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(blockchain => {
+            dispatch(fillBlockchain(blockchain))
+            dispatch(setReadyBlockchain())
+        })
+        .catch((e) => console.log("error while loading blockchain from db, error was ", e))
     }
 }

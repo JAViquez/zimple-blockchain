@@ -1,0 +1,1 @@
+export const orderBlockchainData = (blockchain) => blockchain.slice().reverse()

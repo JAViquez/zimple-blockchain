@@ -34,7 +34,7 @@ function mine(
 export async function addBlock(data: any, db: DbPort) : Promise<Block>{
   const blockId: string = cuid()
   const prevBlock = await db.getLastBlock()
-  const prevHash = prevBlock ? prevBlock.hash : '0'.repeat(64)
+  const prevHash = prevBlock ? prevBlock.hash : '0'.repeat(32)
   const miningResult = await mine(blockId, data, prevHash)
   const newBlock: Block = {
     blockId, 

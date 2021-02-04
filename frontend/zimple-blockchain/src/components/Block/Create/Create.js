@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 
-import './Create.css'
-
 const Create = ({ submitData }) => {
     const [data, setData] = useState("")
     
@@ -30,7 +28,8 @@ const Create = ({ submitData }) => {
                             <label htmlFor="dataInput">Datos</label>
                             <input type="text" className="form-control" id="dataInput" placeholder="Digite los datos a almacenar" 
                                 value={data} 
-                                onChange={(e) => setData(e.target.value)} />
+                                onChange={(e) => setData(e.target.value)}
+                                required minLength={1} />
                         </div>
                         <Grid container
                             spacing={4}

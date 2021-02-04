@@ -11,5 +11,5 @@ export function generateHash(blockId: string, data: any, prevHash: string, nonce
     const string = `${blockId}${data}${prevHash}${nonce}`
     return crypto.createHash("sha256")
                     .update(string)
-                    .digest("hex")
+                    .digest("binary")
 }

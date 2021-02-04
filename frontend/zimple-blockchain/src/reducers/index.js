@@ -1,4 +1,4 @@
-import { SET_LOADIND_BLOCKCHIAN_STATE, ADD_BLOCK_TO_BLOCKCHAIN, SET_READY_BLOCKCHAIN_STATE } from '../actions'
+import { SET_LOADIND_BLOCKCHIAN_STATE, ADD_BLOCK_TO_BLOCKCHAIN, SET_READY_BLOCKCHAIN_STATE, FILL_BLOCKCHAIN } from '../actions'
 
 export const reducers = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,8 @@ export const reducers = (state, action) => {
             return {...state, blockchain: [...state.blockchain, action.payload]}
         case SET_READY_BLOCKCHAIN_STATE:
             return {...state, loadingBlockchain: false}
+        case FILL_BLOCKCHAIN:
+            return { blockchain: [...state.blockchain, ...action.payload]}
         default:
             return state
     }

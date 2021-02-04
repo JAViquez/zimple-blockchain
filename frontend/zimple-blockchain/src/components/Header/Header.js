@@ -11,7 +11,7 @@ const Header = () => {
             alignItems="center"
             id="header"
             className="bg-primary">
-                <h2>
+                <h2 className="text-center">
                     Zimple Blockchain
                 </h2>
         </Grid>
