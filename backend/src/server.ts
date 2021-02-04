@@ -8,6 +8,23 @@ import { verify } from './services/verify'
 const app = express();
 const port = 8080;
 
+const WebSocket = require('ws')
+
+const wss = new WebSocket.Server({ port: 8081 })
+
+wss.on('connection', (ws: any) => {
+    ws.on('message', (message: any) => {
+        wss.clients.forEach((client: any) => {
+            if(client.readyState === WebSocket.OPEN && client !== ws) {
+                client.send(message)
+            }
+        })
+    })
+})
+
+wss.on('error', (error: any) => {
+    console.log("error on server, ", error)
+})
 
 // parse application/json
 app.use(bodyParser.json())

@@ -15,7 +15,7 @@ export const reducers = (state, action) => {
         case SET_READY_BLOCKCHAIN:
             return {...state, loadingBlockchain: false}
         case FILL_BLOCKCHAIN:
-            return { ...state, blockchain: [...state.blockchain, ...action.payload], revalidateBlockchain: true}
+            return { ...state, blockchain: [...action.payload], revalidateBlockchain: true}
         case SET_VALIDATING_BLOCKCHAIN_STATE:
             return { ...state, isValidatingBlockchain: true }
         case SET_BLOCKCHAIN_STATE:

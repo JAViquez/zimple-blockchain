@@ -35,5 +35,6 @@ services:
       - servernetwork
     ports:
       - 7001:8080
+      - 7002:8081
     depends_on:
       - database
