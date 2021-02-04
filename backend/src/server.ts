@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import { addBlock } from './services/addBlock';
 import { getBlockchain } from './services/getBlockchain';
 import { MariaDbAdapter } from './adapters/MariaDbAdapter';
+import { verify } from './services/verify'
 
 const app = express();
 const port = 8080;
@@ -45,6 +46,17 @@ app.get('/blockchain', async (req, res) => {
     try {
         const blockchain = await getBlockchain(db);
         res.json(blockchain);
+    } catch (err) {
+        res.status(500).json({
+            errorMessage: err.message
+        })
+    }
+})
+
+app.get('/verifyBlockchain', async (req, res) => {
+    try {
+        const valid = await verify(db)
+        res.json(valid)
     } catch (err) {
         res.status(500).json({
             errorMessage: err.message

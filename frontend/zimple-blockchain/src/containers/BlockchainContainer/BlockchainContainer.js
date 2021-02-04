@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { getBlockchainFromDB } from '../../actions'
+import { getBlockchainFromDB, validateBlockchain } from '../../actions'
 import { connect } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Grid from '@material-ui/core/Grid'
@@ -15,28 +15,32 @@ class BlockchainContainer extends Component {
 
     componentDidMount() {
         this.props.getBlockchain()
+        this.props.validateBlockchain()
     }
 
     render() {
         const { loadingBlockchain, blockchain } = this.props
         return (
-            loadingBlockchain ?
-            <Grid container
-                direction="row"
-                justify="center"
-                alignItems="center">
-                    <CircularProgress /> 
-            </Grid> 
-            :
             <div className="card">
                 <div className="card-header">
                     <h5>
                         El Blockchain esta formado por los siguientes bloques.
                     </h5>
                 </div>
-                <div className="card-body">
-                    <Blockchain blockchain={blockchain} />
-                </div>
+                { loadingBlockchain ?
+                    <Grid container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        spacing={2}
+                        className="m-4">
+                            <CircularProgress /> 
+                    </Grid> 
+                    :
+                    <div className="card-body">
+                        <Blockchain blockchain={blockchain} />
+                    </div>
+                }
             </div>
         )
     }
@@ -48,7 +52,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getBlockchain: () => dispatch(getBlockchainFromDB())
+    getBlockchain: () => dispatch(getBlockchainFromDB()),
+    validateBlockchain: () => dispatch(validateBlockchain())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlockchainContainer)

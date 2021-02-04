@@ -4,7 +4,10 @@ import { reducers } from '../reducers'
 
 const initialState = {
     loadingBlockchain: true,
-    blockchain: []
+    blockchain: [],
+    isValidatingBlockchain: true,
+    isValidBlockchain: false,
+    revalidateBlockchain: false
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
